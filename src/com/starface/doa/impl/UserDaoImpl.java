@@ -242,6 +242,18 @@ public class UserDaoImpl implements UserDao{
 	public Integer unlockUser(UsersQuery usersQuery) {
 		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.unlockUser", usersQuery);
 	}
+
+	@Override
+	public Integer saymsgUser(UsersQuery usersQuery) {
+		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.saymsgUser", usersQuery);
+	}
+
+	@Override
+	public Integer unsaymsgUser(UsersQuery usersQuery) {
+		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.unsaymsgUser", usersQuery);
+	}
+	
+	
 	
 
 }

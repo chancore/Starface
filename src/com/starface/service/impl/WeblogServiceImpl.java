@@ -23,6 +23,7 @@ import com.starface.domain.vo.UserRelationData;
 import com.starface.domain.vo.WeblogCommentListVo;
 import com.starface.domain.vo.WeblogFriendVo;
 import com.starface.domain.vo.WeblogListVo;
+import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogPraiseListVo;
 import com.starface.domain.vo.WeblogVo;
 import com.starface.frame.core.utils.ClientUtils;
@@ -803,7 +804,17 @@ public class WeblogServiceImpl implements WeblogService{
 		
 		return ClientUtils.success("查询成功", result);
 	}
-	
+
+	@Override
+	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo) {
+		
+		return weblogDao.sysWeblogList(weblogManagerVo);
+	}
+
+	@Override
+	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo) {
+		return weblogDao.sysWeblogListCount(weblogManagerVo);
+	}
 	
 	
 }

@@ -1,14 +1,21 @@
 package com.starface.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.starface.domain.Page;
 import com.starface.domain.WeblogComment;
 import com.starface.domain.WeblogFavorite;
 import com.starface.domain.WeblogPraise;
 import com.starface.domain.query.UsersQuery;
+import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogVo;
 import com.starface.service.WeblogService;
 
@@ -248,6 +255,27 @@ public class WeblogController {
 	public String weblogListByPraise(WeblogVo weblog,Integer nextCursor){
 		
 		return weblogService.weblogListByPraise(weblog,nextCursor);
+	}
+	
+	
+	/**
+	 * 后台日志列表
+	 * @return
+	 */
+	@RequestMapping(value="/manager/list", produces="text/html;charset=UTF-8")
+	public String sysUserList(WeblogManagerVo weblogManagerVo,Map<String, Object> model,HttpSession httpSession){
+		Object object = httpSession.getAttribute("user");
+		if(null == object){
+			model.put("errorMsg", "登录已失效,请重新登录");
+			return "index";
+		}
+		List<WeblogManagerVo> list = weblogService.sysWeblogList(weblogManagerVo);
+		Integer totalRow = weblogService.sysWeblogListCount(weblogManagerVo);
+		model.put("list", list);
+		model.put("weblog", weblogManagerVo);
+		Page page = new Page(totalRow, weblogManagerVo.getStart(), weblogManagerVo.getLimit());
+		model.put("page", page);
+		return  "weblogManager";
 	}
 	
 }

@@ -199,5 +199,18 @@ public interface UserService {
 	 */
 	public String unlockUser(UsersQuery usersQuery);
 	
+	/**
+	 * 锁定用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public String saymsgUser(UsersQuery usersQuery);
+	/***
+	 * 解锁用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public String unsaymsgUser(UsersQuery usersQuery);
+	
 
 }

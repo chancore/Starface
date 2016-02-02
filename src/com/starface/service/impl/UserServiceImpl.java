@@ -1105,15 +1105,25 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String lockUser(UsersQuery usersQuery) {
 		userDao.lockUser(usersQuery);
-		return null;
+		return ClientUtils.success("登录成功");
 	}
 
 	@Override
 	public String unlockUser(UsersQuery usersQuery) {
 		userDao.unlockUser(usersQuery);
-		return null;
+		return ClientUtils.success("登录成功");
 	}
-	
+	@Override
+	public String saymsgUser(UsersQuery usersQuery) {
+		userDao.saymsgUser(usersQuery);
+		return ClientUtils.success("登录成功");
+	}
+
+	@Override
+	public String unsaymsgUser(UsersQuery usersQuery) {
+		userDao.unsaymsgUser(usersQuery);
+		return ClientUtils.success("登录成功");
+	}
 	
 	
 }

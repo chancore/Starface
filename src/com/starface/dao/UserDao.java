@@ -250,4 +250,16 @@ public interface UserDao {
 	 * @return
 	 */
 	public Integer unlockUser(UsersQuery usersQuery);
+	/**
+	 * 锁定用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public Integer saymsgUser(UsersQuery usersQuery);
+	/**
+	 * 解锁用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public Integer unsaymsgUser(UsersQuery usersQuery);
 }

@@ -60,8 +60,7 @@ public class Users {
 	
 	private String mobile;
 	private Integer isLock;
-	
-    
+	private Integer isSaymsg;
     /**
      * 0:未填写
      * 1:男
@@ -537,6 +536,14 @@ public class Users {
 
 	public void setIsLock(Integer isLock) {
 		this.isLock = isLock;
+	}
+
+	public Integer getIsSaymsg() {
+		return isSaymsg;
+	}
+
+	public void setIsSaymsg(Integer isSaymsg) {
+		this.isSaymsg = isSaymsg;
 	}
 	
     

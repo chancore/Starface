@@ -28,7 +28,7 @@ public class Weblog{
     /** 评论数 **/
     private Integer commentCount;
     /** 点赞数 **/
-    //private Integer praiseCount;
+    private Integer praiseCount;
     
     private String address;
     
@@ -161,6 +161,14 @@ public class Weblog{
 	 */
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
+	}
+
+	public Integer getPraiseCount() {
+		return praiseCount;
+	}
+
+	public void setPraiseCount(Integer praiseCount) {
+		this.praiseCount = praiseCount;
 	}
 	
     

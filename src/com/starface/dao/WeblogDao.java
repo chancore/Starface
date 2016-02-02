@@ -13,6 +13,7 @@ import com.starface.domain.vo.UserRelationData;
 import com.starface.domain.vo.WeblogCommentListVo;
 import com.starface.domain.vo.WeblogFavoriteVo;
 import com.starface.domain.vo.WeblogFriendVo;
+import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogPraiseListVo;
 import com.starface.domain.vo.WeblogVo;
 
@@ -358,4 +359,9 @@ public interface WeblogDao {
 	 * @return
 	 */
 	public List<WeblogFriendVo> weblogListByPraise(Map param);
+	
+	
+	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo);
+	
+	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo);
 }

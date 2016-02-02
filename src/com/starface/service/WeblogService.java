@@ -1,9 +1,12 @@
 package com.starface.service;
 
+import java.util.List;
+
 import com.starface.domain.WeblogComment;
 import com.starface.domain.WeblogFavorite;
 import com.starface.domain.WeblogPraise;
 import com.starface.domain.query.UsersQuery;
+import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogVo;
 
 public interface WeblogService {
@@ -127,4 +130,7 @@ public interface WeblogService {
 	 */
 	public String dayWeblogList(UsersQuery usersQuery,Integer nextCursor);
 	
+	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo);
+	
+	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo);
 }

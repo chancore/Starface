@@ -774,7 +774,7 @@
   </select>
   
   <select id="sysUserList" parameterType="com.starface.domain.query.UsersQuery" resultType="com.starface.domain.query.UsersQuery" >
-	  select <include refid="Base_Column_List_PO" />,date_format(create_time,'%Y-%m-%d %H:%i:%s') createTimeView from t_users where 1 = 1
+	  select <include refid="Base_Column_List_PO" />,is_lock isLock,is_saymsg isSaymsg,date_format(create_time,'%Y-%m-%d %H:%i:%s') createTimeView from t_users where 1 = 1
 	  <if test="userName != null">
 	    	and user_name = #{userName}
 	  </if>
@@ -809,6 +809,15 @@
   <!-- 解锁用户 -->
   <update id="unlockUser" parameterType="com.starface.domain.query.UsersQuery" >
   update t_users set is_lock = 0 where id = #{id}
+  </update>
+  
+  <!-- 禁用用户发言 -->
+  <update id="saymsgUser" parameterType="com.starface.domain.query.UsersQuery" >
+  update t_users set is_saymsg = 1 where id = #{id}
+  </update>
+  <!-- 解禁用户发言 -->
+  <update id="unsaymsgUser" parameterType="com.starface.domain.query.UsersQuery" >
+  update t_users set is_saymsg = 0 where id = #{id}
   </update>
   
 </mapper>

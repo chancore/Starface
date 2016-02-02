@@ -38,15 +38,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <jsp:include page="left.jsp"></jsp:include>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row">
-        	<form action="user/manager/list" method="POST" id="ticketManagerForm">
+        	日志管理
+        	<form action="weblog/manager/list" method="POST" id="ticketManagerForm">
         	<div class="col-md-2">
-	        	<input name="userName" value="${user.userName }"/>
+	        	<input name="userName" value=""/>
         	</div>
         	<div class="col-md-3">
-	        	<input name="nickName" value="${user.userName }"/>
+	        	<input name="nickName" value=""/>
         	</div>
         	<div class="col-md-2">
-	        	<input name="codeName" value="${user.codeName }"/>
+	        	<input name="codeName" value=""/>
         	</div>
         	<div class="col-md-2">
 	        	<button type="button" class="btn btn-primary" onclick="submit_form()">搜索</button>
@@ -58,15 +59,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>账号</th>
-                  <th>昵称</th>
-                  <th>代号</th>
-                  <th>手机号码</th>
-                  <th>性别</th>
-                  <th>年龄</th>
-                  <th>注册时间</th>
-                  <th>用户状态</th>
-                  <th>发言状态</th>
+                  <th>用户ID</th>
+                  <th>用户</th>
+                  <th style="width:300px;">日志内容</th>
+                  <th>日志权限</th>
+                  <th>点赞数</th>
+                  <th>评论数</th>
+                  <th>创建时间</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -74,49 +73,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	<c:forEach items="${list }" var="i">
                 <tr>
                   <td>${i.id }</td>
-                  <td>${i.userName }</td>
-                  <td >${i.nickName }</td>
-                  <td >${i.codeName }</td>
-                  <td >${i.mobile }</td>
+                  <td>${i.userId }</td>
+                  <td >${i.name }</td>
+                  <td >${i.content }</td>
                   <td>
-                  	<c:if test="${i.gender == 0 }">未设置</c:if>
-                  	<c:if test="${i.gender == 1 }">男</c:if>
-                  	<c:if test="${i.gender == 2 }">女</c:if>
+                  	<c:if test="${i.isPrivate == 0 }">所有人可见</c:if>
+                  	<c:if test="${i.isPrivate == 1 }">仅好友可见</c:if>
+                  	<c:if test="${i.isPrivate == 2 }">私密</c:if>
                   </td>
                   <td>
-                  	${i.age }
+                  	${i.commentCount }
                   </td>
                   <td>
-                  ${i.createTimeView }
+                  	${i.praiseCount }
                   </td>
                   <td>
-                  	<c:if test="${i.isLock == 0 }">正常</c:if>
-                  	<c:if test="${i.isLock == 1 }"><span style="color:red;">已禁用</span></c:if>
+                  	${i.createTimeView }
                   </td>
                   <td>
-                  	<c:if test="${i.isSaymsg == 0 }">正常</c:if>
-                  	<c:if test="${i.isSaymsg == 1 }"><span style="color:red;">已禁用</span></c:if>
-                  </td>
-                  <td>
-                  <span class="button-dropdown" data-buttons="dropdown">
-				    <button class="button button-rounded">
-				      <span style="font-size;14px;word-break:keep-all;white-space:nowrap;">操作</span><i class="fa fa-caret-down"></i>
-				    </button>
-				    <ul class="button-dropdown-list">
-				    <c:if test="${i.isLock == 0 }">
-				      <li><a href="javascript:void(0);" onclick="lockUser(${i.id})">禁用</a></li>
-				    </c:if>
-				    <c:if test="${i.isLock == 1 }">
-				      <li><a href="javascript:void(0);" onclick="unlockUser(${i.id})">解禁</a></li>
-                  	</c:if>
-                  	<c:if test="${i.isSaymsg == 0 }">
-				      <li><a href="javascript:void(0);" onclick="saymsgUser(${i.id})">禁止发言</a></li>
-				    </c:if>
-                  	<c:if test="${i.isSaymsg == 1 }">
-				      <li><a href="javascript:void(0);" onclick="unsaymsgUser(${i.id})">解禁发言</a></li>
-                  	</c:if>
-				    </ul>
-				  </span>
+                  操作
                   </td>
                 </tr>
                 </c:forEach>
@@ -126,15 +101,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <nav>
 			  <ul class="pagination">
 			    <li>
-			      <a href="user/manager/list?start=${page.currentPage-1 <= 0 ? 0: page.currentPage-1}" aria-label="Previous">
+			      <a href="weblog/manager/list?start=${page.currentPage-1 <= 0 ? 0: page.currentPage-1}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			    <c:forEach items="${page.pageList }" var="i">
-			    <li <c:if test="${i==page.currentPage }">class="active"</c:if>><a  href="user/manager/list?start=${i }">${i+1 }</a></li>
+			    <li <c:if test="${i==page.currentPage }">class="active"</c:if>><a  href="weblog/manager/list?start=${i }">${i+1 }</a></li>
 			    </c:forEach>
 			    <li>
-			      <a href="user/manager/list?start=${page.currentPage+1 >= page.totalPage ? page.totalPage-1: page.currentPage+1 }" aria-label="Next">
+			      <a href="weblog/manager/list?start=${page.currentPage+1 >= page.totalPage ? page.totalPage-1: page.currentPage+1 }" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>

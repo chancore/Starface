@@ -18,6 +18,7 @@ import com.starface.domain.vo.UserRelationData;
 import com.starface.domain.vo.WeblogCommentListVo;
 import com.starface.domain.vo.WeblogFavoriteVo;
 import com.starface.domain.vo.WeblogFriendVo;
+import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogPraiseListVo;
 import com.starface.domain.vo.WeblogVo;
 
@@ -341,4 +342,16 @@ public class WeblogDaoImpl implements WeblogDao{
 		
 		return sqlSessionTemplate.selectList(nameSpace+"weblogListByPraise",pararm);
 	}
+
+	@Override
+	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo) {
+		return sqlSessionTemplate.selectList(nameSpace+"sysWeblogList",weblogManagerVo);
+	}
+
+	@Override
+	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo) {
+		return sqlSessionTemplate.selectOne(nameSpace+"sysWeblogListCount");
+	}
+	
+	
 }

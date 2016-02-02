@@ -455,4 +455,26 @@ public class UserController {
 	}
 	
 	
+	
+	/**
+	 * 锁定用户
+	 * @return
+	 */
+	@RequestMapping(value="/saymsg_user", produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String saymsgUser(UsersQuery usersQuery){
+		return  userService.saymsgUser(usersQuery);
+	}
+	
+	/**
+	 * 解锁用户
+	 * @return
+	 */
+	@RequestMapping(value="/unsaymsg_user", produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String unsaymsgUser(UsersQuery usersQuery){
+		return  userService.unsaymsgUser(usersQuery);
+	}
+	
+	
 }

@@ -574,4 +574,22 @@
 		 
 	</select>
 	
+	<select id="sysWeblogList" parameterType="com.starface.domain.vo.WeblogManagerVo" resultType="com.starface.domain.vo.WeblogManagerVo">
+		select a.id,a.user_id userId,a.is_private isPrivate,a.type,content,a.comment_count commentCount,
+		a.praise_count praiseCount,a.create_time,a.address,b.user_name name,
+		date_format(a.create_time,'%Y-%m-%d %H:%i:%s') createTimeView  from t_weblog a left join t_users b 
+		on a.user_id = b.id order by a.id desc  
+		<if test="start != null">
+   	  	limit ${start * limit} ,#{limit}
+   		</if>
+	</select>
+	
+	<select id="sysWeblogListCount" parameterType="com.starface.domain.vo.WeblogManagerVo" resultType="java.lang.Integer">
+		select count(1) cnt from t_weblog a left join t_users b on a.user_id = b.id
+		order by a.id desc 
+		<if test="start != null">
+   	  	 limit #{start * limit} ,#{limit}
+   		</if>
+	</select>
+	
 </mapper>
