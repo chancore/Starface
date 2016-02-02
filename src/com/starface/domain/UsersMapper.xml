@@ -83,7 +83,7 @@
   
   <select id="login" parameterType="QueryVo" resultMap="BaseResultMap" >
     select 
-      <include refid="Base_Column_List" />
+      <include refid="Base_Column_List" />,is_lock
      from t_users
      where (user_name = #{userName} or mobile = #{mobile}) and pwd = #{pwd} limit 1
   </select>
@@ -802,5 +802,13 @@
 	    	and code_name = #{codeName}
 	  </if>
   </select>
+  <!-- 锁定用户 -->
+  <update id="lockUser" parameterType="com.starface.domain.query.UsersQuery" >
+  update t_users set is_lock = 1 where id = #{id}
+  </update>
+  <!-- 解锁用户 -->
+  <update id="unlockUser" parameterType="com.starface.domain.query.UsersQuery" >
+  update t_users set is_lock = 0 where id = #{id}
+  </update>
   
 </mapper>

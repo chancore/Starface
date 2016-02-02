@@ -186,5 +186,18 @@ public interface UserService {
 	
 	public Integer sysUserListCount(UsersQuery usersQuery);
 	
+	/**
+	 * 锁定用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public String lockUser(UsersQuery usersQuery);
+	/***
+	 * 解锁用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public String unlockUser(UsersQuery usersQuery);
+	
 
 }

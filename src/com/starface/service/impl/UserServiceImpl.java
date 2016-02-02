@@ -129,6 +129,9 @@ public class UserServiceImpl implements UserService{
 		if(null == user){
 			return ClientUtils.failure(4003,"密码错误");
 		}
+		if(user.getIsLock() == 1){
+			return ClientUtils.failure(4003,"用户已经被锁定");
+		}
 		/**
          * IM用户登录
          */
@@ -1098,5 +1101,19 @@ public class UserServiceImpl implements UserService{
 		
 		return userDao.sysUserListCount(usersQuery);
 	}
+
+	@Override
+	public String lockUser(UsersQuery usersQuery) {
+		userDao.lockUser(usersQuery);
+		return null;
+	}
+
+	@Override
+	public String unlockUser(UsersQuery usersQuery) {
+		userDao.unlockUser(usersQuery);
+		return null;
+	}
+	
+	
 	
 }

@@ -232,6 +232,16 @@ public class UserDaoImpl implements UserDao{
 		Integer count = this.sqlSessionTemplate.selectOne("com.starface.domain.UsersMapper.sysUserListCount", usersQuery);
 		return count;
 	}
+
+	@Override
+	public Integer lockUser(UsersQuery usersQuery) {
+		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.lockUser", usersQuery);
+	}
+
+	@Override
+	public Integer unlockUser(UsersQuery usersQuery) {
+		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.unlockUser", usersQuery);
+	}
 	
 
 }

@@ -59,6 +59,7 @@ public class Users {
 	private String hometownAreaName;
 	
 	private String mobile;
+	private Integer isLock;
 	
     
     /**
@@ -529,5 +530,14 @@ public class Users {
 	public void setOpenType(Integer openType) {
 		this.openType = openType;
 	}
+
+	public Integer getIsLock() {
+		return isLock;
+	}
+
+	public void setIsLock(Integer isLock) {
+		this.isLock = isLock;
+	}
+	
     
 }

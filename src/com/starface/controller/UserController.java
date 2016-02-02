@@ -434,5 +434,25 @@ public class UserController {
 		return  "userManager";
 	}
 	
+	/**
+	 * 锁定用户
+	 * @return
+	 */
+	@RequestMapping(value="/lock_user", produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String lockUser(UsersQuery usersQuery){
+		return  userService.lockUser(usersQuery);
+	}
+	
+	/**
+	 * 解锁用户
+	 * @return
+	 */
+	@RequestMapping(value="/unlock_user", produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String unlockUser(UsersQuery usersQuery){
+		return  userService.unlockUser(usersQuery);
+	}
+	
 	
 }

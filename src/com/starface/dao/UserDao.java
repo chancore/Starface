@@ -238,4 +238,16 @@ public interface UserDao {
 	 * @return
 	 */
 	public Integer sysUserListCount(UsersQuery usersQuery);
+	/**
+	 * 锁定用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public Integer lockUser(UsersQuery usersQuery);
+	/**
+	 * 解锁用户
+	 * @param usersQuery
+	 * @return
+	 */
+	public Integer unlockUser(UsersQuery usersQuery);
 }
