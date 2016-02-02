@@ -18,6 +18,7 @@ import com.starface.domain.WeblogComment;
 import com.starface.domain.WeblogFavorite;
 import com.starface.domain.WeblogFile;
 import com.starface.domain.WeblogPraise;
+import com.starface.domain.po.UserPo;
 import com.starface.domain.query.UsersQuery;
 import com.starface.domain.vo.UserRelationData;
 import com.starface.domain.vo.WeblogCommentListVo;
@@ -50,6 +51,13 @@ public class WeblogServiceImpl implements WeblogService{
 		
 		if(weblogVo.getUserId() == null || weblogVo.getUserId() == 0){
 			return ClientUtils.failure("用户ID不能为空");
+		}
+		UserPo userPo =  userDao.getUserById(weblogVo.getUserId());
+		if(userPo.getIsLock() == 1){
+			return ClientUtils.failure("您的账号已经被禁用");
+		}
+		if(userPo.getIsSaymsg() == 1){
+			return ClientUtils.failure("您的账号已经被禁言");
 		}
 		if(weblogVo.getType() == null ){
 			weblogVo.setType(0);

@@ -25,7 +25,6 @@ public interface UserDao {
 	
 	public Users getUserByOpenTypeAndOpenId(BaseQueryVo query);
 	
-	
 	/**
 	 * 用户注册
 	 * @param user
@@ -262,4 +261,6 @@ public interface UserDao {
 	 * @return
 	 */
 	public Integer unsaymsgUser(UsersQuery usersQuery);
+	
+	public UserPo getUserById(Integer userId);
 }

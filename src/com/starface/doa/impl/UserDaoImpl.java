@@ -252,7 +252,10 @@ public class UserDaoImpl implements UserDao{
 	public Integer unsaymsgUser(UsersQuery usersQuery) {
 		return this.sqlSessionTemplate.update("com.starface.domain.UsersMapper.unsaymsgUser", usersQuery);
 	}
-	
+	@Override
+	public UserPo getUserById(Integer userId) {
+		return this.sqlSessionTemplate.selectOne("com.starface.domain.UsersMapper.getUserById", userId);
+	}
 	
 	
 

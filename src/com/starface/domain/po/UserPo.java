@@ -40,6 +40,8 @@ public class UserPo {
     private String movie ;
     private String sport ;
     private String music ;
+    private Integer isLock;
+    private Integer isSaymsg;
 	
 	/**
 	 * @return the id
@@ -475,6 +477,18 @@ public class UserPo {
 	 */
 	public void setMusic(String music) {
 		this.music = music;
+	}
+	public Integer getIsLock() {
+		return isLock;
+	}
+	public void setIsLock(Integer isLock) {
+		this.isLock = isLock;
+	}
+	public Integer getIsSaymsg() {
+		return isSaymsg;
+	}
+	public void setIsSaymsg(Integer isSaymsg) {
+		this.isSaymsg = isSaymsg;
 	}
 	
 	

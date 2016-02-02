@@ -608,6 +608,13 @@
   where id = #{id}
   </update>
   
+  <!-- 搜索好友 -->
+  <select id="getUserById" parameterType="java.lang.Integer" resultType="com.starface.domain.po.UserPo" >
+    select
+     <include refid="Base_Column_List_PO" />,is_lock isLock,is_saymsg isSaymsg
+     from t_users
+     where id = #{userId}
+  </select>
   
   
   <!-- 附近的人 -->
