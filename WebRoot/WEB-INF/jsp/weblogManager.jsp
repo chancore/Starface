@@ -91,7 +91,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   	${i.createTimeView }
                   </td>
                   <td>
-                  操作
+                  <span class="button-dropdown" data-buttons="dropdown">
+				    <button class="button button-rounded">
+				      <span style="font-size;14px;word-break:keep-all;white-space:nowrap;">操作</span><i class="fa fa-caret-down"></i>
+				    </button>
+				    <ul class="button-dropdown-list">
+				      <li><a href="javascript:void(0);" onclick="deleteWeblog(${i.id})">删除日志</a></li>
+				    </ul>
+				  </span>
                   </td>
                 </tr>
                 </c:forEach>
@@ -117,7 +124,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</nav>
         </div>
       </div>
-      
     </div>
 	<!-- Modal -->  
 	<!-- Bootstrap core JavaScript
@@ -134,51 +140,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function submit_form(){
     	$("#ticketManagerForm").submit();
     }
-    function pass(id){
-    	var content = $("#tx_"+id).val();
-    	$.post("user/feedback/reply",{id:id,feedback:content},function(result){
-    		if(result.status == 0){
-    			alert("保存成功");
-    			submit_form();
-    		}
-    	});
-    }
     function openWin(url){
     	window.open(url,'newwindow','height=auto,width=auto,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no') ;
     }
-    function lockUser(id){
-    	if(confirm("确定要禁用该用户吗?禁用后就不可再登录")){
-    		$.post("user/lock_user",{id:id},function(result){
-       			window.location.reload();
-        	});
-    	}
-    	
-    }
-    function unlockUser(id){
-    	if(confirm("确定要解禁该用户吗?")){
-    		$.post("user/unlock_user",{id:id},function(result){
+    function deleteWeblog(id){
+    	if(confirm("确定要删除该日志吗?删除后不可恢复.")){
+    		$.post("weblog/delete_weblog",{id:id},function(result){
        			window.location.reload();
         	});
     	}
     	
     }
     
-    function saymsgUser(id){
-    	if(confirm("确定要禁止该用户发言吗?")){
-    		$.post("user/saymsg_user",{id:id},function(result){
-       			window.location.reload();
-        	});
-    	}
-    	
-    }
-    function unsaymsgUser(id){
-    	if(confirm("确定要解禁该用户发言吗?")){
-    		$.post("user/unsaymsg_user",{id:id},function(result){
-       			window.location.reload();
-        	});
-    	}
-    	
-    }
     </script>
   </body>
 </html>

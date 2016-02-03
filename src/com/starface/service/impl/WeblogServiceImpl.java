@@ -823,6 +823,30 @@ public class WeblogServiceImpl implements WeblogService{
 	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo) {
 		return weblogDao.sysWeblogListCount(weblogManagerVo);
 	}
+
+	@Override
+	public String deteleWeblog(WeblogVo weblogVo) {
+		//删除评论记录
+		weblogDao.deleteWeblogCommentByWeblogId(weblogVo);
+		//删除点赞记录
+		weblogDao.deleteWeblogPraiseByWeblogId(weblogVo);
+		//删除日志
+		weblogDao.deleteWeblogById(weblogVo);
+		return null;
+	}
+
+	@Override
+	public Map webolgDetail(WeblogManagerVo weblogManagerVo) {
+		
+		Map result = new HashMap();
+		Weblog weblog = new Weblog();
+		weblog.setId(weblogManagerVo.getId());
+		Weblog weblog2 =weblogDao.selectWeblogById(weblog);
+		result.put("weblog", weblog2);
+//		weblogDao.
+		result.put("weblogImg", 123);
+		return result;
+	}
 	
 	
 }

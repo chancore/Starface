@@ -1,6 +1,7 @@
 package com.starface.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.starface.domain.WeblogComment;
 import com.starface.domain.WeblogFavorite;
@@ -133,4 +134,8 @@ public interface WeblogService {
 	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo);
 	
 	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo);
+	
+	public String deteleWeblog(WeblogVo weblogVo);
+	
+	public Map webolgDetail(WeblogManagerVo weblogManagerVo);
 }

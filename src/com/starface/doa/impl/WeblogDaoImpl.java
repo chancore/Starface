@@ -350,7 +350,12 @@ public class WeblogDaoImpl implements WeblogDao{
 
 	@Override
 	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo) {
-		return sqlSessionTemplate.selectOne(nameSpace+"sysWeblogListCount");
+		return sqlSessionTemplate.selectOne(nameSpace+"sysWeblogListCount",weblogManagerVo);
+	}
+
+	@Override
+	public Integer deleteWeblog(WeblogVo weblogVo) {
+		return this.sqlSessionTemplate.update(nameSpace+"deleteWeblog", weblogVo);
 	}
 	
 	

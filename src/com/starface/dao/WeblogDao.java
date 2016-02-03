@@ -364,4 +364,6 @@ public interface WeblogDao {
 	public List<WeblogManagerVo> sysWeblogList(WeblogManagerVo weblogManagerVo);
 	
 	public Integer sysWeblogListCount(WeblogManagerVo weblogManagerVo);
+	
+	public Integer deleteWeblog(WeblogVo weblogVo);
 }

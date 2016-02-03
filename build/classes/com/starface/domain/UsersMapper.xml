@@ -83,7 +83,7 @@
   
   <select id="login" parameterType="QueryVo" resultMap="BaseResultMap" >
     select 
-      <include refid="Base_Column_List" />,is_lock
+      <include refid="Base_Column_List" />,is_lock isLock
      from t_users
      where (user_name = #{userName} or mobile = #{mobile}) and pwd = #{pwd} limit 1
   </select>

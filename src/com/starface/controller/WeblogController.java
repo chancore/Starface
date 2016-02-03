@@ -278,4 +278,36 @@ public class WeblogController {
 		return  "weblogManager";
 	}
 	
+	/**
+	 * 按评论最多的排序日志列表
+	 * http://localhost:8080/Starface/weblog/allWeblogList?userId=12
+	 * @return
+	 */
+	@RequestMapping(value="/delete_weblog", produces="text/html;charset=UTF-8" )
+	@ResponseBody
+	public String deleteWeblog(WeblogVo weblogVo){
+		
+		return weblogService.deteleWeblog(weblogVo);
+	}
+	
+	/**
+	 * 后台日志列表
+	 * @return
+	 */
+	@RequestMapping(value="/detail", produces="text/html;charset=UTF-8")
+	public String weblogDeail(WeblogManagerVo weblogManagerVo,Map<String, Object> model,HttpSession httpSession){
+		Object object = httpSession.getAttribute("user");
+		if(null == object){
+			model.put("errorMsg", "登录已失效,请重新登录");
+			return "index";
+		}
+		List<WeblogManagerVo> list = weblogService.sysWeblogList(weblogManagerVo);
+		Integer totalRow = weblogService.sysWeblogListCount(weblogManagerVo);
+		model.put("list", list);
+		model.put("weblog", weblogManagerVo);
+		Page page = new Page(totalRow, weblogManagerVo.getStart(), weblogManagerVo.getLimit());
+		model.put("page", page);
+		return  "weblogManager";
+	}
+	
 }
