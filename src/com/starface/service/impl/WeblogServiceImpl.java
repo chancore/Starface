@@ -843,8 +843,7 @@ public class WeblogServiceImpl implements WeblogService{
 		weblog.setId(weblogManagerVo.getId());
 		Weblog weblog2 =weblogDao.selectWeblogById(weblog);
 		result.put("weblog", weblog2);
-//		weblogDao.
-		result.put("weblogImg", 123);
+		result.put("weblogImg", weblogDao.selectWeblogFileListByWeblogId(weblog));
 		return result;
 	}
 	

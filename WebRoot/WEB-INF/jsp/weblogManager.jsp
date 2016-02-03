@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <td>${i.id }</td>
                   <td>${i.userId }</td>
                   <td >${i.name }</td>
-                  <td >${i.content }</td>
+                  <td ><a href="javascript:void(0);" onclick="openWeblog(${i.id})">${i.content }</a></td>
                   <td>
                   	<c:if test="${i.isPrivate == 0 }">所有人可见</c:if>
                   	<c:if test="${i.isPrivate == 1 }">仅好友可见</c:if>
@@ -140,8 +140,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function submit_form(){
     	$("#ticketManagerForm").submit();
     }
-    function openWin(url){
-    	window.open(url,'newwindow','height=auto,width=auto,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no') ;
+    function openWeblog(id){
+    	window.open("weblog/detail?id="+id,'newwindow','height=auto,width=auto,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no') ;
     }
     function deleteWeblog(id){
     	if(confirm("确定要删除该日志吗?删除后不可恢复.")){

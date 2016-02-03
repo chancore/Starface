@@ -38,6 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <jsp:include page="left.jsp"></jsp:include>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row">
+        	用户管理
         	<form action="user/manager/list" method="POST" id="ticketManagerForm">
         	<div class="col-md-2">
 	        	<input name="userName" value="${user.userName }"/>

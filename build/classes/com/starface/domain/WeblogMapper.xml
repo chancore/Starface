@@ -586,10 +586,6 @@
 	
 	<select id="sysWeblogListCount" parameterType="com.starface.domain.vo.WeblogManagerVo" resultType="java.lang.Integer">
 		select count(1) cnt from t_weblog a left join t_users b on a.user_id = b.id
-		order by a.id desc 
-		<if test="start != null">
-   	  	 limit ${start * limit} ,#{limit}
-   		</if>
 	</select>
 	<!-- 删除日志 -->
 	<update id="deleteWeblog" parameterType="com.starface.domain.vo.WeblogVo">

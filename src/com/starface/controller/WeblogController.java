@@ -301,13 +301,8 @@ public class WeblogController {
 			model.put("errorMsg", "登录已失效,请重新登录");
 			return "index";
 		}
-		List<WeblogManagerVo> list = weblogService.sysWeblogList(weblogManagerVo);
-		Integer totalRow = weblogService.sysWeblogListCount(weblogManagerVo);
-		model.put("list", list);
-		model.put("weblog", weblogManagerVo);
-		Page page = new Page(totalRow, weblogManagerVo.getStart(), weblogManagerVo.getLimit());
-		model.put("page", page);
-		return  "weblogManager";
+		model.put("result", weblogService.webolgDetail(weblogManagerVo));
+		return  "weblogDetail";
 	}
 	
 }
