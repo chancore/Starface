@@ -94,6 +94,13 @@ public interface WeblogDao {
 	 * @return
 	 */
 	public Weblog selectWeblogById(Weblog weblog);
+	
+	/**
+	 * 获取日志--根据ID
+	 * @param weblog
+	 * @return
+	 */
+	public WeblogManagerVo selectWeblogByIdForVo(Weblog weblog);
 	/**
 	 * 删除点赞记录--根据日志ID
 	 * @param weblog

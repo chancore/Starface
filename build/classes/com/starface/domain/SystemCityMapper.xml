@@ -41,4 +41,24 @@
   insert into t_inform(illegal_id,obj_id,user_id,type,remark)
   values(#{illegalId},#{objId},#{userId},#{type},#{remark})
   </insert>
+  
+  <select id="informManageList" resultType="com.starface.domain.vo.InformVo" parameterType="com.starface.domain.vo.InformVo">
+    select a.id,c.user_name userName,case when type = 1 then '举报日志' 
+		when type = 2 then '举报聊天' 
+		when type = 3 then '举报用户' end informType,
+		a.obj_id objId,b.name illegalName,a.remark,
+		a.create_time createTime
+		 from t_inform a left join t_illegal_list b on a.illegal_id = b.id left join t_users c 
+		on a.user_id = c.id order by id desc
+		<if test="start != null">
+   	  	limit ${start * limit} ,#{limit}
+   		</if>
+  </select>
+  
+  <select id="informManageListCount" resultType="java.lang.Integer" parameterType="com.starface.domain.vo.InformVo">
+    select count(1) cnt
+		 from t_inform a left join t_illegal_list b on a.illegal_id = b.id left join t_users c 
+		on a.user_id = c.id 
+  </select>
+  
 </mapper>

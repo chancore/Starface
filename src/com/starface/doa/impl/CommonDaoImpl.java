@@ -11,6 +11,7 @@ import com.starface.domain.Illegal;
 import com.starface.domain.Inform;
 import com.starface.domain.SystemCity;
 import com.starface.domain.vo.BaseQueryVo;
+import com.starface.domain.vo.InformVo;
 
 @Repository
 public class CommonDaoImpl implements CommonDao {
@@ -46,6 +47,19 @@ public class CommonDaoImpl implements CommonDao {
 		
 		return sqlSessionTemplate.insert("com.starface.domain.SystemCityMapper.saveInform", inform);
 	}
+
+	@Override
+	public List<InformVo> informManageList(InformVo informVo) {
+
+		return sqlSessionTemplate.selectList("com.starface.domain.SystemCityMapper.informManageList", informVo);
+	}
+	
+	@Override
+	public Integer informManageListCount(InformVo informVo) {
+
+		return sqlSessionTemplate.selectOne("com.starface.domain.SystemCityMapper.informManageListCount", informVo);
+	}
+	
 	
 	
 }

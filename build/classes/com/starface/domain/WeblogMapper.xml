@@ -73,6 +73,12 @@
 		create_time	 createTime from t_weblog where id = #{id}
 	</select>
 	
+	<!-- 根据ID获取日志 -->
+	<select id="selectWeblogByIdForVo" parameterType="com.starface.domain.Weblog" resultType="com.starface.domain.vo.WeblogManagerVo">
+		select id,user_id userId,is_private isPrivate,type,content,comment_count commentCount,praise_count praiseCount,
+		create_time createTime,date_format(create_time,'%Y-%m-%d %H:%i:%s') createTimeView from t_weblog where id = #{id}
+	</select>
+	
 	<!-- 删除点赞记录,根据日志ID -->
 	<delete id="deleteWeblogPraiseByWeblogId"  parameterType="com.starface.domain.Weblog" >
 		delete from t_weblog_praise where weblog_id = #{id}
@@ -82,7 +88,7 @@
 	<delete id="deleteWeblogCommentByWeblogId" parameterType="com.starface.domain.Weblog">
 		delete from t_weblog_comment where  weblog_id = #{id}
 	</delete>
-	
+		
 	<!-- 删除日志,根据日志ID -->
 	<delete id="deleteWeblogById" parameterType="com.starface.domain.Weblog">
 		delete from t_weblog where id = #{id}
@@ -576,7 +582,7 @@
 	
 	<select id="sysWeblogList" parameterType="com.starface.domain.vo.WeblogManagerVo" resultType="com.starface.domain.vo.WeblogManagerVo">
 		select a.id,a.user_id userId,a.is_private isPrivate,a.type,content,a.comment_count commentCount,
-		a.praise_count praiseCount,a.create_time,a.address,b.user_name name,
+		a.praise_count praiseCount,a.create_time createTime,a.address,b.user_name name,
 		date_format(a.create_time,'%Y-%m-%d %H:%i:%s') createTimeView  from t_weblog a left join t_users b 
 		on a.user_id = b.id order by a.id desc  
 		<if test="start != null">

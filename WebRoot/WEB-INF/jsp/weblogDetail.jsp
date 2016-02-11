@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="icon" href="../../favicon.ico">
     <title>星脸联盟</title>
     <!-- Bootstrap core CSS -->
-    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/buttons.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="resources/css/dashboard.css" rel="stylesheet">
@@ -37,11 +37,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	        <div class="row">
-	        	${result.weblog.content }
+	        	日志内容：${result.weblog.content }
 	        </div>
 	         <div class="row">
-	        	创建时间:${result.weblog.createTime } 
-	        	<fmt:formatDate value="${result.weblog.createTime}" pattern="yyyy-MM-dd HH:mm:ss"  />
+	        	创建时间:${result.weblog.createTimeView } 
+	        </div>
+	        <div>
+	        日志图片:
+	        <c:forEach items="${result.weblogImg }" var="i">
+	        
+	        <img src"<%=basePath%>${i.path }"/>
+	        </c:forEach>
 	        </div>
         </div>
       </div>

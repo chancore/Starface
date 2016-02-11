@@ -1,7 +1,10 @@
 package com.starface.service;
 
 
+import java.util.List;
+
 import com.starface.domain.Inform;
+import com.starface.domain.vo.InformVo;
 import com.starface.domain.vo.SystemCityVo;
 
 public interface CommonService {
@@ -47,4 +50,7 @@ public interface CommonService {
 	 */
 	public String informUser(Inform inform);
  
+	public List<InformVo> informManageList(InformVo informVo) ;
+	
+	public Integer informManageListCount(InformVo informVo) ;
 }

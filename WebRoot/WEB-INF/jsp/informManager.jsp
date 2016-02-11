@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -38,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <jsp:include page="left.jsp"></jsp:include>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row">
-        	日志管理
+        	举报列表
         	<form action="weblog/manager/list" method="POST" id="ticketManagerForm">
         	<div class="col-md-2">
 	        	<input name="userName" value=""/>
@@ -59,46 +60,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>用户ID</th>
-                  <th>用户</th>
-                  <th style="width:300px;">日志内容</th>
-                  <th>日志权限</th>
-                  <th>点赞数</th>
-                  <th>评论数</th>
-                  <th>创建时间</th>
-                  <th>操作</th>
+                  <th>举报人</th>
+                  <th>举报类型</th>
+                  <th>举报选项</th>
+                  <th>备注</th>
+                  <th>举报对象</th>
+                  <th>举报时间</th>
                 </tr>
               </thead>
               <tbody>
               	<c:forEach items="${list }" var="i">
                 <tr>
                   <td>${i.id }</td>
-                  <td>${i.userId }</td>
-                  <td >${i.name }</td>
-                  <td ><a href="javascript:void(0);" onclick="openWeblog(${i.id})">${i.content }</a></td>
+                  <td>${i.userName }</td>
+                  <td >${i.informType }</td>
+                  <td >${i.illegalName }</td>
+                  <td>${i.remark }</td>
+                  <td>${i.objId }</td>
                   <td>
-                  	<c:if test="${i.isPrivate == 0 }">所有人可见</c:if>
-                  	<c:if test="${i.isPrivate == 1 }">仅好友可见</c:if>
-                  	<c:if test="${i.isPrivate == 2 }">私密</c:if>
-                  </td>
-                  <td>
-                  	${i.commentCount }
-                  </td>
-                  <td>
-                  	${i.praiseCount }
-                  </td>
-                  <td>
-                  	${i.createTimeView }
-                  </td>
-                  <td>
-                  <span class="button-dropdown" data-buttons="dropdown">
-				    <button class="button button-rounded">
-				      <span style="font-size;14px;word-break:keep-all;white-space:nowrap;">操作</span><i class="fa fa-caret-down"></i>
-				    </button>
-				    <ul class="button-dropdown-list">
-				      <li><a href="javascript:void(0);" onclick="deleteWeblog(${i.id})">删除日志</a></li>
-				    </ul>
-				  </span>
+                  <fmt:formatDate value="${i.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                   </td>
                 </tr>
                 </c:forEach>
@@ -108,15 +88,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <nav>
 			  <ul class="pagination">
 			    <li>
-			      <a href="weblog/manager/list?start=${page.currentPage-1 <= 0 ? 0: page.currentPage-1}" aria-label="Previous">
+			      <a href="common/inform/list?start=${page.currentPage-1 <= 0 ? 0: page.currentPage-1}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			    <c:forEach items="${page.pageList }" var="i">
-			    <li <c:if test="${i==page.currentPage }">class="active"</c:if>><a  href="weblog/manager/list?start=${i }">${i+1 }</a></li>
+			    <li <c:if test="${i==page.currentPage }">class="active"</c:if>><a  href="common/inform/list?start=${i }">${i+1 }</a></li>
 			    </c:forEach>
 			    <li>
-			      <a href="weblog/manager/list?start=${page.currentPage+1 >= page.totalPage ? page.totalPage-1: page.currentPage+1 }" aria-label="Next">
+			      <a href="common/inform/list?start=${page.currentPage+1 >= page.totalPage ? page.totalPage-1: page.currentPage+1 }" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>

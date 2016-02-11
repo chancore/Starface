@@ -841,7 +841,9 @@ public class WeblogServiceImpl implements WeblogService{
 		Map result = new HashMap();
 		Weblog weblog = new Weblog();
 		weblog.setId(weblogManagerVo.getId());
-		Weblog weblog2 =weblogDao.selectWeblogById(weblog);
+		WeblogManagerVo weblog2 =weblogDao.selectWeblogByIdForVo(weblog);
+		String ctime = DateUtils.DateToStr(new Date(weblog2.getCreateTime()), "yyyy-MM-dd HH:mm:ss");
+		weblog2.setCreateTimeView(ctime); 
 		result.put("weblog", weblog2);
 		result.put("weblogImg", weblogDao.selectWeblogFileListByWeblogId(weblog));
 		return result;

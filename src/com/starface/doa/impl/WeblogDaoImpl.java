@@ -98,6 +98,12 @@ public class WeblogDaoImpl implements WeblogDao{
 		
 		return sqlSessionTemplate.selectOne(nameSpace+"selectWeblogById", weblog);
 	}
+	
+	@Override
+	public WeblogManagerVo selectWeblogByIdForVo(Weblog weblog) {
+		
+		return sqlSessionTemplate.selectOne(nameSpace+"selectWeblogByIdForVo", weblog);
+	}
 
 	@Override
 	public int deleteWeblogPraiseByWeblogId(Weblog weblog) {

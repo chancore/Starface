@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="icon" href="../../favicon.ico">
     <title>星脸联盟</title>
     <!-- Bootstrap core CSS -->
-    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="resources/css/dashboard.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="resources/css/lanrenzhijia.css">
@@ -121,13 +121,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ol>
 		</div>
 	</div>
-	<div class="theme-popover-mask"></div>
+	<div class="theme-popover-mask">
 	<!-- Modal -->  
-	<!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript"
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="resources/js/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="resources/js/ie10-viewport-bug-workaround.js"></script>

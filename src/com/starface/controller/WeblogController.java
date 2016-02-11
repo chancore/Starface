@@ -1,5 +1,6 @@
 package com.starface.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.starface.domain.WeblogPraise;
 import com.starface.domain.query.UsersQuery;
 import com.starface.domain.vo.WeblogManagerVo;
 import com.starface.domain.vo.WeblogVo;
+import com.starface.frame.core.utils.DateUtils;
 import com.starface.service.WeblogService;
 
 /**
@@ -270,6 +272,11 @@ public class WeblogController {
 			return "index";
 		}
 		List<WeblogManagerVo> list = weblogService.sysWeblogList(weblogManagerVo);
+		for(WeblogManagerVo wmv : list){
+			long creTime = wmv.getCreateTime();
+			String ctime = DateUtils.DateToStr(new Date(creTime), "yyyy-MM-dd HH:mm:ss");
+			wmv.setCreateTimeView(ctime); 
+		}
 		Integer totalRow = weblogService.sysWeblogListCount(weblogManagerVo);
 		model.put("list", list);
 		model.put("weblog", weblogManagerVo);

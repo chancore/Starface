@@ -22,6 +22,10 @@ public class Page {
 		for(int i = 0;i<totalPage;i++){
 			pageList.add(i);
 		}
+		int mod = totalRow%limit;
+		if(mod>=1){
+			pageList.add(totalPage);
+		}
 	}
 	/**
 	 * @return the totalRow

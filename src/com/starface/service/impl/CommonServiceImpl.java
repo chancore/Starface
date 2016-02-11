@@ -13,6 +13,7 @@ import com.starface.domain.Illegal;
 import com.starface.domain.Inform;
 import com.starface.domain.SystemCity;
 import com.starface.domain.vo.BaseQueryVo;
+import com.starface.domain.vo.InformVo;
 import com.starface.domain.vo.SystemCityVo;
 import com.starface.frame.core.utils.ClientUtils;
 import com.starface.service.CommonService;
@@ -101,4 +102,16 @@ public class CommonServiceImpl implements CommonService{
 		commonDao.saveInform(inform);
 		return ClientUtils.success("举报成功",result);
 	}
+
+	@Override
+	public List<InformVo> informManageList(InformVo informVo) {
+		
+		return commonDao.informManageList(informVo);
+	}
+	@Override
+	public Integer informManageListCount(InformVo informVo) {
+		
+		return commonDao.informManageListCount(informVo);
+	}
+	
 }

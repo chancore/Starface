@@ -1,12 +1,19 @@
 package com.starface.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.starface.domain.Inform;
+import com.starface.domain.Page;
 import com.starface.domain.query.UsersQuery;
+import com.starface.domain.vo.InformVo;
 import com.starface.domain.vo.SystemCityVo;
 import com.starface.service.CommonService;
 
@@ -74,6 +81,25 @@ public class CommmonController {
 	public String informUser(Inform inform){
 		
 		return commonService.informUser(inform);
+	}
+	
+	/**
+	 * 用户举报列表
+	 * @return
+	 */
+	@RequestMapping(value="/inform/list", produces="text/html;charset=UTF-8")
+	public String sysUserList(InformVo informVo,Map<String, Object> model,HttpSession httpSession){
+		Object object = httpSession.getAttribute("user");
+		if(null == object){
+			model.put("errorMsg", "登录已失效,请重新登录");
+			return "index";
+		}
+		List<InformVo> list = commonService.informManageList(informVo);
+		Integer totalRow = commonService.informManageListCount(informVo);
+		model.put("list", list);
+		Page page = new Page(totalRow, informVo.getStart(), informVo.getLimit());
+		model.put("page", page);
+		return  "informManager";
 	}
 	
 }

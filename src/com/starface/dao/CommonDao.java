@@ -6,6 +6,7 @@ import com.starface.domain.Illegal;
 import com.starface.domain.Inform;
 import com.starface.domain.SystemCity;
 import com.starface.domain.vo.BaseQueryVo;
+import com.starface.domain.vo.InformVo;
 
 public interface CommonDao {
 	
@@ -28,5 +29,9 @@ public interface CommonDao {
 	public List<Illegal> illegalList();
 	
 	public Integer saveInform(Inform inform);
+	
+	public List<InformVo> informManageList(InformVo informVo);
+	
+	public Integer informManageListCount(InformVo informVo);
 	
 }

@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <ul class="nav nav-sidebar">
     <li name="menu_li" <c:if test="${url==1 }">class="active"</c:if>><a href="user/manager/list?start=0">用户管理 <span class="sr-only">(current)</span></a></li>
     <li name="menu_li" <c:if test="${url==2 }">class="active"</c:if>><a href="weblog/manager/list?start=0">日志管理 </a></li>
+    <li name="menu_li" <c:if test="${url==2 }">class="active"</c:if>><a href="common/inform/list?start=0">举报列表 </a></li>
   </ul>
   <%--
   <ul class="nav nav-sidebar">
