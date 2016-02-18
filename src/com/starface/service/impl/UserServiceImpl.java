@@ -576,7 +576,7 @@ public class UserServiceImpl implements UserService{
     		bqv.setOffset(0);
     		bqv.setLimit(20);
     		List userPo = userDao.searchUser(bqv);
-    		if(null!=userPo){
+    		if(null!=userPo && !userPo.isEmpty()){
     			an.add(userPo.get(0));
     		}
 		}
